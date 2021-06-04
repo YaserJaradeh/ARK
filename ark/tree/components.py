@@ -37,7 +37,7 @@ class DTExpr(object):
 
 
 class DTCondition(object):
-    def __init__(self, condition: Union[List[str], str], node: str, default: bool):
+    def __init__(self, condition: Union[List[str], str], node: str, default: bool = False):
         self.condition = [DTExpr(c) for c in condition] if isinstance(condition, List) else [DTExpr(condition)]
         self.node = node
         self.default = default
@@ -48,7 +48,7 @@ class DTCondition(object):
 
 
 class DTChance(object):
-    def __init__(self, prompt: Optional[str], set: Optional[Union[List[str], str]], node: str):
+    def __init__(self, node: str, prompt: Optional[str] = None, set: Optional[Union[List[str], str]] = None):
         self.node = node
         self.prompt = prompt
         self.set = None if set is None else [DTExpr(c) for c in set] if isinstance(set, List) else [DTExpr(set)]

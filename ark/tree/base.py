@@ -5,8 +5,8 @@ from ark.tree import DTCommand, DTChoice, DTCondition, DTExpr, DTChance
 
 class DTNode(object):
     def __init__(self, name: Optional[str], prompt: str):
-        self.name = name
-        self.prompt = prompt
+        self.name: Optional[str] = name
+        self.prompt: str = prompt
 
     def validate_node(self):
         pass
@@ -17,6 +17,15 @@ class DTNode(object):
 
     def to_json(self) -> Dict:
         return json.loads(self.serialize())
+
+    def __str__(self):
+        return self.serialize()
+
+    def __repr__(self):
+        return self.__str__()
+
+    def run(self) -> Optional['DTNode']:
+        pass
 
 
 class GameNode(DTNode):
@@ -72,5 +81,33 @@ class ChanceNode(DTNode):
 
 class BaseDecisionTree(object):
 
-    def parse(self, file):
+    def __init__(self, dt_path: str):
+        self.path = dt_path
+        self.game_node: DTNode = None
+        self.nodes: Dict[str, DTNode] = {}
+        self.cursor: DTNode = None
+        self.env: Dict[str, Any] = {}
+        self.parse()
+
+    def parse(self):
         pass
+
+    def __str__(self):
+        return f'DT loaded from "{self.path}"\nGame node: {self.game_node}\n' \
+               f'Current position in the tree: {self.cursor}\nTree has the following nodes:\n{self.nodes}'
+
+
+class DummyDecisionTree(BaseDecisionTree):
+
+    def parse(self):
+        self.game_node = GameNode(
+            game_title='Dummy game', description='None for now!',
+            start_node='first-node', env={'budget': 30000, 'age': 31},
+            commands={0: {'command': 'status', 'action': 'print env'}, 1: {'command': 'die', 'action': 'die'}}
+        )
+        self.cursor = DTNode(name='Wowza!', prompt='This is the final node.')
+
+
+if __name__ == '__main__':
+    dt = DummyDecisionTree(dt_path='')
+    print(dt)
