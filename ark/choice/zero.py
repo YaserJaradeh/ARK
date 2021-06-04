@@ -13,7 +13,3 @@ class ZeroShotSelector(BaseChoiceSelector):
         response = self.classifier(text, choices, multi_label=self.multi_label)
         return [(c, response['scores'][i]) for i, c in enumerate(response['labels'])]
 
-
-if __name__ == '__main__':
-    cls = ZeroShotSelector()
-    print(cls.rank_choices(text='let\'s head 45 degrees west', choices=['turn left', 'turn right', 'stop and rest', 'fight enemy']))
