@@ -1,7 +1,6 @@
 import yaml
 from typing import Dict
 from ark.tree import BaseDecisionTree
-from ark.tree import DTCommand, DTChoice, DTCondition, DTExpr, DTChance
 from ark.tree import ChoiceNode, ChanceNode, GameNode, DTNode, ConditionNode
 
 
@@ -17,13 +16,15 @@ class YamlDecisionTree(BaseDecisionTree):
         if 'game' not in file_content.keys():
             raise ValueError(f'The YAML file should contain a "game" node.')
         for node_key, node in file_content.items():
+            if node_key in self.nodes:
+                print(f'Be careful some node IDs are duplicates, which means something is going wrong!')
             if node_key == 'game':
                 self.game_node = GameNode(**node)
-            elif 'choices' in node.keys():
+            elif 'choices' in node:
                 self.nodes[node_key] = ChoiceNode(**node)
-            elif 'conditions' in node.keys():
+            elif 'conditions' in node:
                 self.nodes[node_key] = ConditionNode(**node)
-            elif 'chances' in node.keys():
+            elif 'chances' in node:
                 self.nodes[node_key] = ChanceNode(**node)
             else:
                 self.nodes[node_key] = DTNode(**node)

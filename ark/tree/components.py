@@ -1,4 +1,4 @@
-from typing import List, Union, Optional, Dict
+from typing import List, Union, Optional, Dict, Any
 
 
 class DTCommand(object):
@@ -30,6 +30,12 @@ class DTExpr(object):
         self.variable = parts[0]
         self.operator = parts[1]
         self.operand = parts[2]
+
+    def apply(self, env: Dict[str, Any]):
+        if self.variable not in env:
+            env[self.variable] = self.operand
+        else:
+            env[self.variable] = eval(f"{env[self.variable]} {self.operator} {self.operand}")
 
     @staticmethod
     def to_expressions(expr: Union[List[str], str]) -> List['DTExpr']:
