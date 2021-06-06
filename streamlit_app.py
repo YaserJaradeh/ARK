@@ -8,3 +8,10 @@ build_dir = os.path.join(parent_dir, "frontend/build")
 _terminal = components.declare_component(
     "terminal", path=build_dir
 )
+
+
+def ark_terminal():
+    return _terminal()
+
+
+ark_terminal()
