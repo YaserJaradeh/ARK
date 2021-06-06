@@ -1,3 +1,5 @@
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/yaserjaradeh/ark)
+
 # ARK
 Text-based game that uses NLP models
 
@@ -13,7 +15,7 @@ Tha backend makes use of [Huggingface zero-shot classifier](https://huggingface.
 The code for the frontend is mostly based on the [Vue-shell](https://github.com/HalasProject/vue-shell) project.
 
 ## Deployment
-Online demo available [here]().
+Online demo available [here](https://share.streamlit.io/yaserjaradeh/ark).
 
 deployment infrastructure through [Streamlit.io](https://streamlit.io/)
 
