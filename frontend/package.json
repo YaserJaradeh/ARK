@@ -2,7 +2,6 @@
   "name": "ark",
   "version": "1.0.0",
   "description": "ARK text-based game UI",
-  "main": "main.js",
   "dependencies": {
     "react-scripts": "^4.0.3",
     "streamlit-component-lib": "^1.2.0",
