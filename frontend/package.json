@@ -20,9 +20,7 @@
   "private": true,
   "scripts": {
     "start": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "startr": "react-scripts start",
-    "buildr": "react-scripts build",
+    "build": "vue-cli-service build && mv dist/ build/",
     "serve": "vue-cli-service serve",
     "lint": "vue-cli-service lint"
   },
