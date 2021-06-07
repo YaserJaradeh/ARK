@@ -2,17 +2,23 @@ import streamlit as st
 import streamlit.components.v1 as components
 import os
 
-parent_dir = os.path.dirname(os.path.abspath(__file__))
-build_dir = os.path.join(parent_dir, "frontend/build")
+_RELEASE = False
+COMPONENT_NAME = "terminal"
 
-# url="http://localhost:3001"
-_terminal = components.declare_component(
-    "terminal", path=build_dir
-)
+if not _RELEASE:
+    _component_func = components.declare_component(
+        COMPONENT_NAME,
+        url="http://localhost:3001",
+    )
+else:
+    parent_dir = os.path.dirname(os.path.abspath(__file__))
+    build_dir = os.path.join(parent_dir, "frontend/build")
+    _component_func = components.declare_component(COMPONENT_NAME, path=build_dir)
 
 
 def ark_terminal():
-    return _terminal()
+    return _component_func()
 
 
-ark_terminal()
+if not _RELEASE:
+    ark_terminal()
