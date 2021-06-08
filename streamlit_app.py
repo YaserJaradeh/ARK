@@ -5,7 +5,7 @@ import os
 # Setting page appearance to "Wide Mode"
 st.set_page_config(layout="wide")
 
-_RELEASE = False
+_RELEASE = True
 COMPONENT_NAME = "terminal"
 
 if not _RELEASE:
@@ -15,7 +15,7 @@ if not _RELEASE:
     )
 else:
     parent_dir = os.path.dirname(os.path.abspath(__file__))
-    build_dir = os.path.join(parent_dir, "frontend/build")
+    build_dir = os.path.join(parent_dir, "frontend/dist")
     _component_func = components.declare_component(COMPONENT_NAME, path=build_dir)
 
 

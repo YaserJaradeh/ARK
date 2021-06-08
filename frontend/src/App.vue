@@ -18,7 +18,7 @@ export default {
       banner: {
         header: "ARK (Using NLP to make gaming more fun)",
         subHeader: "Enjoy your journey with us. Currently loaded story: <<PhD Life>>",
-        helpHeader: 'Enter "help" for more information.',
+        helpHeader: 'Enter "help" for available commands.',
         emoji: {
           first: "🤖",
           second: "📝",
