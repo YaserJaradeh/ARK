@@ -2,6 +2,9 @@ import streamlit as st
 import streamlit.components.v1 as components
 import os
 
+# Setting page appearance to "Wide Mode"
+st.set_page_config(layout="wide")
+
 _RELEASE = False
 COMPONENT_NAME = "terminal"
 
@@ -19,9 +22,6 @@ else:
 def ark_terminal():
     return _component_func()
 
-
-# Setting page appearance to "Wide Mode"
-st.set_page_config(layout="wide")
 
 if not _RELEASE:
     ark_terminal()
