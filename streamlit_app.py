@@ -20,5 +20,8 @@ def ark_terminal():
     return _component_func()
 
 
+# Setting page appearance to "Wide Mode"
+st.set_page_config(layout="wide")
+
 if not _RELEASE:
     ark_terminal()
